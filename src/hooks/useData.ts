@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react"
 import axios, { CanceledError } from "axios"
-import { Game, GamesResponse } from "../models/api-model"
+import { GameAPI } from "../enums/game-enums";
+
+// Generic custom hook to get the data from the API
+// Receives a Type and as argument an enum to indicate wich endpoint do we need
 
 const apiClient = axios.create({
     baseURL: 'https://api.rawg.io/api',
@@ -9,40 +12,44 @@ const apiClient = axios.create({
     }
 })
 
-interface GamesReturnType {
-    games: Game[]; 
+interface FetchResponse<T> {
+    count: number;
+    next: string;
+    previous: string;
+    results: T[]
+}
+
+interface ReturnDataType<T> {
+    data: T[]; 
     error: string;
     isLoading: boolean;
-} 
+}
 
-// setIsLoading to false should done in the finally block, but for some reason, it doesn´t work
-// when using the strict mode. That´s why is repeated in the .then and the .catch
-
-function useGames(): GamesReturnType {
-    const [games, setGames] = useState<Game[]>([])
+function useData<T>(api: GameAPI): ReturnDataType<T> {
+    const [data, setData] = useState<T[]>([])
     const [error, setError] = useState('')
     const [isLoading, setIsLoading] = useState(false)
 
     useEffect(() => {    
         const controller = new AbortController()
-        
+
         setIsLoading(true)
-        apiClient.get<GamesResponse>('/games', { signal: controller.signal })
+        apiClient.get<FetchResponse<T>>(api, { signal: controller.signal })
             .then(res => {
-                setGames(res.data.results)
+                setData(res.data.results)
                 setError('')
             })
             .catch(err => {
                 if (!(err instanceof CanceledError))
                 setError(err.message)
-                setGames([])
+                setData([])
             })
             .finally(() => setIsLoading(false))
         
         return () => controller.abort()
     }, [])
 
-    return { games, error, isLoading }
+    return { data, error, isLoading }
 }
 
-export default useGames;
+export default useData;

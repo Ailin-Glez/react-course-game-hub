@@ -1,22 +1,23 @@
-export interface GamesResponse {
-    count: number;
-    next: string;
-    previous: string;
-    results: Game[]
-}
-
 export interface Game {
     id: number;
     name: string;
+    background_image: string;
+    metacritic: number;
     released: string;
     rating: number;
-    plataforms: Plataform[]
+    parent_platforms: { platform: Platform }[]
 }
 
-interface Plataform {
-    plataform: {
-        id: number;
-        slug: string;
-        name: string
-    }
+export interface Genre {
+    id: number;
+    name: string;
+    slug: string;
+    games_count: number;
+    image_background: string;
+}
+
+export interface Platform {
+    id: number;
+    slug: string;
+    name: string
 }
