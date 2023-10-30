@@ -8,14 +8,6 @@ export interface Game {
     parent_platforms: { platform: Platform }[]
 }
 
-export interface Genre {
-    id: number;
-    name: string;
-    slug: string;
-    games_count: number;
-    image_background: string;
-}
-
 export interface Platform {
     id: number;
     slug: string;
