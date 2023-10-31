@@ -18,7 +18,14 @@
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true
+    "noFallthroughCasesInSwitch": true,
+    "baseUrl": "./src",
+    "paths": {
+      "@enums": ["enums/game-enums.ts"],
+      "@hooks": ["hooks/index.ts"],
+      "@models": ["models/api-model.ts"],
+      "@services": ["services/image-url.ts"],
+    }
   },
   "include": ["src"],
   "references": [{ "path": "./tsconfig.node.json" }]

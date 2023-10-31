@@ -3,7 +3,7 @@ import { BsNintendoSwitch, BsPlaystation, BsXbox, BsAndroid2 } from 'react-icons
 import { AiOutlineMacCommand } from 'react-icons/ai';
 import { DiLinux } from 'react-icons/di';
 import { MdComputer } from 'react-icons/md';
-import { Platform } from "../models/api-model";
+import { Platform } from "@models";
 import { IconType } from "react-icons";
 
 interface Props {

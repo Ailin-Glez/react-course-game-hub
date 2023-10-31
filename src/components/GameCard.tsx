@@ -1,7 +1,7 @@
 import { Badge, Card, CardBody, HStack, Heading, Image, Skeleton, SkeletonText } from "@chakra-ui/react";
-import { Game } from "../models/api-model";
 import PlatformItems from "./PlatformItems";
-import { getCroppedImageUrl } from "../services/image-url";
+import { Game } from "@models";
+import { getCroppedImageUrl } from "@services";
 
 interface Props {
     game: Game;

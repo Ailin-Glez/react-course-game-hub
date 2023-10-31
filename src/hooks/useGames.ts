@@ -1,9 +1,7 @@
-import { GameAPI } from "../enums/game-enums";
-import { Game } from "../models/api-model";
+import { GameAPI } from "@enums";
+import { Game } from "@models";
 import useData from "./useData";
 
-function useGames() {
+export function useGames() {
     return useData<Game>(GameAPI.games)
 }
-
-export default useGames;

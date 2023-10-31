@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import axios, { CanceledError } from "axios"
-import { GameAPI } from "../enums/game-enums";
+import { GameAPI } from "@enums";
 
 // Generic custom hook to get the data from the API
 // Receives a Type and as argument an enum to indicate wich endpoint do we need

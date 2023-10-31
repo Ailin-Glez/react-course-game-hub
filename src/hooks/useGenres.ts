@@ -1,4 +1,4 @@
-import { GameAPI } from "../enums/game-enums";
+import { GameAPI } from "@enums";
 import useData from "./useData";
 
 interface Genre {
@@ -9,8 +9,6 @@ interface Genre {
     image_background: string;
 } 
 
-function useGenres() {
+export function useGenres() {
     return useData<Genre>(GameAPI.genres)
 }
-
-export default useGenres;
