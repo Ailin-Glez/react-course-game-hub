@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react"
-import axios, { CanceledError } from "axios"
-import { GameAPI } from "@enums";
+import axios, { AxiosRequestConfig, CanceledError } from "axios"
 
 // Generic custom hook to get the data from the API
 // Receives a Type and as argument an enum to indicate wich endpoint do we need
@@ -25,16 +24,17 @@ interface ReturnDataType<T> {
     isLoading: boolean;
 }
 
-function useData<T>(api: GameAPI): ReturnDataType<T> {
+function useData<T>(api: string, reqConfig?: AxiosRequestConfig, dependencies?: any[]): ReturnDataType<T> {
     const [data, setData] = useState<T[]>([])
     const [error, setError] = useState('')
     const [isLoading, setIsLoading] = useState(false)
+    const deps = dependencies ? [...dependencies] : []
 
     useEffect(() => {    
         const controller = new AbortController()
-
+        
         setIsLoading(true)
-        apiClient.get<FetchResponse<T>>(api, { signal: controller.signal })
+        apiClient.get<FetchResponse<T>>(api, { signal: controller.signal, ...reqConfig })
             .then(res => {
                 setData(res.data.results)
                 setError('')
@@ -47,7 +47,7 @@ function useData<T>(api: GameAPI): ReturnDataType<T> {
             .finally(() => setIsLoading(false))
         
         return () => controller.abort()
-    }, [])
+    }, deps)
 
     return { data, error, isLoading }
 }

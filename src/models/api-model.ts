@@ -1,6 +1,7 @@
 export interface Game {
     id: number;
     name: string;
+    genres: Genre[]
     background_image: string;
     metacritic: number;
     released: string;
@@ -13,3 +14,11 @@ export interface Platform {
     slug: string;
     name: string
 }
+
+export interface Genre {
+    id: number;
+    name: string;
+    slug: string;
+    games_count: number;
+    image_background: string;
+} 

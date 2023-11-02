@@ -13,7 +13,7 @@ function GameCard({ game, isLoading }: Props) {
     const badgeColor = metacritic > 85 ? 'green' : metacritic < 65 ? 'red' : 'yellow'
     
     return (
-        <Card borderRadius={10} overflow='hidden' width='250px'>
+        <Card borderRadius={10} overflow='hidden'>
             {isLoading ? <Skeleton height='220px' /> : <Image src={getCroppedImageUrl(background_image)} maxWidth='320px' minHeight='160'></Image>}
             <CardBody>
                 {isLoading
