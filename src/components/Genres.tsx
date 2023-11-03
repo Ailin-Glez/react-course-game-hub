@@ -1,5 +1,6 @@
 import { Avatar, Button, HStack, Spinner, VStack } from '@chakra-ui/react'
 import { useGenres } from '@hooks';
+import { getCroppedImageUrl } from '@services';
 
 interface Props {
     selectedGenre: string | null;
@@ -12,13 +13,13 @@ function Genres({ selectedGenre, onSelectedGenre }: Props) {
     if (isLoading) return <VStack justifyContent='center' alignItems='center' minH={5}> <Spinner minH={5}/> </VStack>
     
     return (
-        <VStack minWidth='80px' alignItems='flex-start'>
+        <VStack alignItems='flex-start'>
             <ul>
                 {genres.map(g => {
                     return (
                         <HStack my={2} key={g.id} p={1}>
-                            <Avatar size='sm' borderRadius={10} name={g.slug} src={g.image_background}/>
-                            <Button colorScheme='teal' variant={g.slug === selectedGenre ? 'solid' : 'ghost'} onClick={() => onSelectedGenre(g.slug)}>{g.name}</Button>
+                            <Avatar size='sm' borderRadius={10} name={g.slug} src={getCroppedImageUrl(g.image_background)}/>
+                            <Button variant='link' fontWeight={g.slug === selectedGenre ? 'bold' : 'normal'} onClick={() => onSelectedGenre(g.slug)}>{g.name}</Button>
                         </HStack>
                     )
                 })}
