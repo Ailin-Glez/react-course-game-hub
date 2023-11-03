@@ -3,11 +3,12 @@ import GameCard from './GameCard'
 import { useGames } from '@hooks';
 
 interface Props {
-    genre: string | null
+    selectedGenre: string | null;
+    platformId: number | undefined;
 }
 
-function GameGrid({ genre }: Props) {
-    const { data: games, error, isLoading } = useGames(genre); 
+function GameGrid({ selectedGenre, platformId }: Props) {
+    const { data: games, error, isLoading } = useGames({ selectedGenre, platformId }); 
 
     return (
         <>

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import axios, { AxiosRequestConfig, CanceledError } from "axios"
+import { GameAPI } from "@enums";
 
 // Generic custom hook to get the data from the API
 // Receives a Type and as argument an enum to indicate wich endpoint do we need
@@ -24,7 +25,7 @@ interface ReturnDataType<T> {
     isLoading: boolean;
 }
 
-function useData<T>(api: string, reqConfig?: AxiosRequestConfig, dependencies?: any[]): ReturnDataType<T> {
+function useData<T>(api: GameAPI, reqConfig?: AxiosRequestConfig, dependencies?: any[]): ReturnDataType<T> {
     const [data, setData] = useState<T[]>([])
     const [error, setError] = useState('')
     const [isLoading, setIsLoading] = useState(false)
