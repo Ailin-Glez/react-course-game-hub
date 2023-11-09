@@ -18,12 +18,13 @@ function PlatformSelector({ selectedPlatform, onPlatformSelection }: Props) {
             {({ isOpen }) => (
                 <>
                     <MenuButton marginBottom={4} as={Button} rightIcon={isOpen ? <BsChevronUp /> : <BsChevronDown />}>
-                        {selectedPlatform ? selectedPlatform : 'Platforms'}
+                        {selectedPlatform ? selectedPlatform : 'All Platforms'}
                     </MenuButton>
                     <MenuList>
                         {platforms.map(p => (
                             <MenuItem key={p.id} 
-                                backgroundColor={selectedPlatform === p.name ? 'gray.800' : 'transparent'} 
+                                backgroundColor={selectedPlatform === p.name ? 'gray.800' : 'transparent'}
+                                _hover={{ backgroundColor: 'gray.600' }}
                                 onClick={() => onPlatformSelection(p)}
                             >
                                 {p.name}

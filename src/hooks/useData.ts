@@ -12,6 +12,12 @@ const apiClient = axios.create({
     }
 })
 
+interface DataParams {
+    api: GameAPI, 
+    reqConfig?: AxiosRequestConfig, 
+    dependencies?: any[]
+}
+
 interface FetchResponse<T> {
     count: number;
     next: string;
@@ -25,7 +31,7 @@ interface ReturnDataType<T> {
     isLoading: boolean;
 }
 
-function useData<T>(api: GameAPI, reqConfig?: AxiosRequestConfig, dependencies?: any[]): ReturnDataType<T> {
+function useData<T>({ api, reqConfig, dependencies }: DataParams): ReturnDataType<T> {
     const [data, setData] = useState<T[]>([])
     const [error, setError] = useState('')
     const [isLoading, setIsLoading] = useState(false)

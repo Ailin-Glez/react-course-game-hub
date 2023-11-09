@@ -1,14 +1,13 @@
 import { GameAPI } from "@enums";
-import { Game } from "@models";
+import { Game, GameQuery } from "@models";
 import useData from "./useData";
 
 interface GameProps {
-    selectedGenre: string | null;
-    platformId: number | undefined
+    gameQuery: GameQuery;
 }
 
-export function useGames({ selectedGenre, platformId }: GameProps) {
-    return useData<Game>(GameAPI.games, 
-        { params: { genres: selectedGenre, parent_platforms: platformId }}, [selectedGenre, platformId]
-    )
+export function useGames({  gameQuery }: GameProps) {
+    return useData<Game>({ api: GameAPI.games, 
+        reqConfig: { params: { genres: gameQuery.genre, parent_platforms: gameQuery.platform?.id }}, dependencies: [gameQuery]
+    })
 }

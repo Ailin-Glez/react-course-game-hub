@@ -3,5 +3,5 @@ import useData from "./useData";
 import { GameAPI } from "@enums";
 
 export function usePlatforms() {
-    return useData<Platform>(GameAPI.platforms);
+    return useData<Platform>({ api: GameAPI.platforms });
 }

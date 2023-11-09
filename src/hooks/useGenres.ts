@@ -3,5 +3,5 @@ import useData from "./useData";
 import { Genre } from "@models";
 
 export function useGenres() {
-    return useData<Genre>(GameAPI.genres)
+    return useData<Genre>({ api: GameAPI.genres })
 }
