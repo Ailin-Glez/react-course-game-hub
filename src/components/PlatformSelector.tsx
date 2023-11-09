@@ -1,7 +1,6 @@
-import { Button, Menu, MenuButton, MenuItem, MenuList } from "@chakra-ui/react";
 import { Platform } from "@models";
-import { usePlatforms } from "hooks/usePlatforms";
-import { BsChevronDown, BsChevronUp } from "react-icons/bs";
+import { usePlatforms } from "@hooks";
+import Dropdown from "./Dropdown";
 
 interface Props {
     selectedPlatform: string | undefined;
@@ -14,25 +13,12 @@ function PlatformSelector({ selectedPlatform, onPlatformSelection }: Props) {
     if (error) return null
 
     return (
-        <Menu>
-            {({ isOpen }) => (
-                <>
-                    <MenuButton marginBottom={4} as={Button} rightIcon={isOpen ? <BsChevronUp /> : <BsChevronDown />}>
-                        {selectedPlatform ? selectedPlatform : 'All Platforms'}
-                    </MenuButton>
-                    <MenuList>
-                        {platforms.map(p => (
-                            <MenuItem key={p.id} 
-                                backgroundColor={selectedPlatform === p.name ? 'gray.800' : 'transparent'}
-                                _hover={{ backgroundColor: 'gray.600' }}
-                                onClick={() => onPlatformSelection(p)}
-                            >
-                                {p.name}
-                            </MenuItem>))} 
-                    </MenuList>
-                </>
-            )}
-        </Menu>
+        <Dropdown 
+            btnName={selectedPlatform || 'All Platforms'} 
+            items={platforms} 
+            itemSelected={selectedPlatform} 
+            onItemSelection={onPlatformSelection} 
+        />
     );
 }
 

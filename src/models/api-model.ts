@@ -23,7 +23,14 @@ export interface Genre {
     image_background: string;
 } 
 
+export interface Sort {
+    id: number;
+    name: string;
+    slug: string;
+}
+
 export interface GameQuery {
     genre: string | null;
-    platform: Platform | null
+    platform: Platform | null,
+    sort: Sort | undefined
 }

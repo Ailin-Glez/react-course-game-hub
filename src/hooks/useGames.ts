@@ -6,8 +6,14 @@ interface GameProps {
     gameQuery: GameQuery;
 }
 
-export function useGames({  gameQuery }: GameProps) {
+export function useGames({ gameQuery }: GameProps) {
     return useData<Game>({ api: GameAPI.games, 
-        reqConfig: { params: { genres: gameQuery.genre, parent_platforms: gameQuery.platform?.id }}, dependencies: [gameQuery]
+        reqConfig: { params: 
+            { 
+                genres: gameQuery.genre, 
+                parent_platforms: gameQuery.platform?.id, 
+                ordering: gameQuery.sort?.slug  
+            }
+        }, dependencies: [gameQuery]
     })
 }
