@@ -1,4 +1,4 @@
-import Dropdown from "./Dropdown";
+import Dropdown from "./generic/Dropdown";
 import { SORT_VALUES } from "constants/sortValues";
 import { useContext } from "react";
 import { GameContext } from "context/gameContext";

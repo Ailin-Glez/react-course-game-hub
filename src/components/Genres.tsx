@@ -1,8 +1,8 @@
-import { Avatar, Button, HStack, Spinner, VStack } from '@chakra-ui/react'
+import { List, Spinner, VStack } from '@chakra-ui/react'
 import { useGenres } from '@hooks';
-import { getCroppedImageUrl } from '@services';
 import { GameContext } from 'context/gameContext';
 import { useContext } from 'react';
+import GenreList from './generic/GenreList';
 
 function Genres() {
     const { data: genres, isLoading } = useGenres()
@@ -12,22 +12,17 @@ function Genres() {
     
     return (
         <VStack alignItems='flex-start'>
-            <ul>
+            <List>
                 {genres.map(g => {
                     return (
-                        <HStack my={2} key={g.id} p={1}>
-                            <Avatar size='sm' borderRadius={10} name={g.slug} src={getCroppedImageUrl(g.image_background)}/>
-                            <Button 
-                                variant='link' 
-                                fontWeight={g.slug === gameQuery.genre?.slug ? 'bold' : 'normal'} 
-                                onClick={() => setGameQuery({ ...gameQuery, genre: g })}
-                            >
-                                {g.name}
-                            </Button>
-                        </HStack>
+                        <GenreList 
+                            genre={g} 
+                            gameQuery={gameQuery} 
+                            onSelectListItem={() => setGameQuery({ ...gameQuery, genre: g })} 
+                        />
                     )
                 })}
-            </ul>
+            </List>
         </VStack>
     );
 }

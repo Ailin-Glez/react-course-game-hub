@@ -1,5 +1,5 @@
 import { usePlatforms } from "@hooks";
-import Dropdown from "./Dropdown";
+import Dropdown from "./generic/Dropdown";
 import { useContext } from "react";
 import { GameContext } from "context/gameContext";
 
