@@ -1,14 +1,12 @@
 import { SimpleGrid, Text } from '@chakra-ui/react'
 import GameCard from './GameCard'
 import { useGames } from '@hooks';
-import { GameQuery } from '@models';
+import { useContext } from 'react';
+import { GameContext } from 'context/gameContext';
 
-interface Props {
-    gameQuery: GameQuery;
-}
-
-function GameGrid({ gameQuery }: Props) {
-    const { data: games, error, isLoading } = useGames({ gameQuery }); 
+function GameGrid() {
+    const { gameQuery } = useContext(GameContext)
+    const { data: games, error, isLoading } = useGames({ gameQuery })
 
     return (
         <>

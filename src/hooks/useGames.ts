@@ -10,6 +10,7 @@ export function useGames({ gameQuery }: GameProps) {
     return useData<Game>({ api: GameAPI.games, 
         reqConfig: { params: 
             { 
+                search: gameQuery.game,
                 genres: gameQuery.genre, 
                 parent_platforms: gameQuery.platform?.id, 
                 ordering: gameQuery.sort?.slug  

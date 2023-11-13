@@ -1,19 +1,17 @@
-import { Sort } from "@models";
 import Dropdown from "./Dropdown";
 import { SORT_VALUES } from "constants/sortValues";
+import { useContext } from "react";
+import { GameContext } from "context/gameContext";
 
-interface Props {
-    selectedOrder: Sort | undefined;
-    onSortSelection: (sort: Sort) => void;
-}
+function SortSelector() {
+    const { gameQuery, setGameQuery } = useContext(GameContext)
 
-function SortSelector({ selectedOrder, onSortSelection }: Props) {
     return (
         <Dropdown 
-            btnName={`Order by: ${selectedOrder?.name}`} 
+            btnName={`Order by: ${gameQuery.sort?.name}`} 
             items={SORT_VALUES} 
-            itemSelected={selectedOrder?.name} 
-            onItemSelection={onSortSelection} 
+            itemSelected={gameQuery.sort?.name} 
+            onItemSelection={(sort) => setGameQuery({ ...gameQuery, sort })} 
         />
     );
 }
