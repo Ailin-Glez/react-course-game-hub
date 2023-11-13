@@ -31,7 +31,7 @@ export interface Sort {
 
 export interface GameQuery {
     game: string | null;
-    genre: string | null;
+    genre: Genre | null;
     platform: Platform | null,
     sort: Sort | undefined
 }

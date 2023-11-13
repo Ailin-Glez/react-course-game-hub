@@ -4,6 +4,7 @@ import Genres from './components/Genres'
 import GameGrid from './components/GameGrid'
 import PlatformSelector from 'components/PlatformSelector'
 import SortSelector from 'components/SortSelector'
+import GameHeading from 'components/GameHeading'
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <NavBar />
       </GridItem>
       <GridItem area={'section'} as='section'>
+        <GameHeading />
         <HStack spacing={8} marginBottom={4}>
           <PlatformSelector />
           <SortSelector />

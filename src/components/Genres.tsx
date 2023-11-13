@@ -19,8 +19,8 @@ function Genres() {
                             <Avatar size='sm' borderRadius={10} name={g.slug} src={getCroppedImageUrl(g.image_background)}/>
                             <Button 
                                 variant='link' 
-                                fontWeight={g.slug === gameQuery.genre ? 'bold' : 'normal'} 
-                                onClick={() => setGameQuery({ ...gameQuery, genre: g.slug })}
+                                fontWeight={g.slug === gameQuery.genre?.slug ? 'bold' : 'normal'} 
+                                onClick={() => setGameQuery({ ...gameQuery, genre: g })}
                             >
                                 {g.name}
                             </Button>

@@ -11,7 +11,7 @@ export function useGames({ gameQuery }: GameProps) {
         reqConfig: { params: 
             { 
                 search: gameQuery.game,
-                genres: gameQuery.genre, 
+                genres: gameQuery.genre?.slug, 
                 parent_platforms: gameQuery.platform?.id, 
                 ordering: gameQuery.sort?.slug  
             }
