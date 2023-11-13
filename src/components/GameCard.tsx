@@ -14,19 +14,22 @@ function GameCard({ game, isLoading }: Props) {
     
     return (
         <Card borderRadius={10} overflow='hidden'>
-            {isLoading ? <Skeleton height='220px' /> : <Image src={getCroppedImageUrl(background_image)} maxWidth='320px' minHeight='160'></Image>}
+            {isLoading 
+                ? <Skeleton height='220px' /> 
+                : <Image src={getCroppedImageUrl(background_image)} maxWidth='320px' minHeight='160'></Image>
+            }
             <CardBody>
                 {isLoading
-                ? <SkeletonText />
-                : <>
-                    <Heading fontSize='xl' minHeight='50px'>{name}</Heading>
-                    <HStack justifyContent='space-between' my={3}>
-                        <HStack>
-                            <PlatformItems platforms={parent_platforms.map(p => p.platform)} />
+                    ? <SkeletonText />
+                    : <>
+                        <HStack justifyContent='space-between' mb={1}>
+                            <HStack>
+                                <PlatformItems platforms={parent_platforms.map(p => p.platform)} />
+                            </HStack>
+                            <Badge colorScheme={badgeColor} fontSize={12} paddingX={2}>{metacritic}</Badge>
                         </HStack>
-                        <Badge colorScheme={badgeColor} fontSize={12} paddingX={2}>{metacritic}</Badge>
-                    </HStack>
-                </>
+                        <Heading fontSize='xl' mt={4} minHeight='50px'>{name}</Heading>
+                    </>
                 }
             </CardBody>
         </Card>
