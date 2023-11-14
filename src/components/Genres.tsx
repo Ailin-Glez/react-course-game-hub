@@ -2,7 +2,7 @@ import { List, VStack } from '@chakra-ui/react'
 import { GameContext } from 'context/gameContext';
 import { useContext } from 'react';
 import GenreList from './generic/GenreList';
-import { GENRES } from 'data/genre';
+import { GENRES } from 'data/genres';
 
 function Genres() {
     const { gameQuery, setGameQuery } = useContext(GameContext)

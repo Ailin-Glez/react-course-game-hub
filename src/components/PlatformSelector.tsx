@@ -1,18 +1,15 @@
-import { usePlatforms } from "@hooks";
 import Dropdown from "./generic/Dropdown";
 import { useContext } from "react";
 import { GameContext } from "context/gameContext";
+import { PLATFORMS } from "data/platforms";
 
 function PlatformSelector() {
-    const { data: platforms, error } = usePlatforms()
     const { gameQuery, setGameQuery } = useContext(GameContext)
-    
-    if (error) return null
 
     return (
         <Dropdown 
             btnName={gameQuery.platform?.name || 'All Platforms'} 
-            items={platforms} 
+            items={PLATFORMS} 
             itemSelected={gameQuery.platform?.name} 
             onItemSelection={(platform) => setGameQuery({ ...gameQuery, platform })} 
         />
