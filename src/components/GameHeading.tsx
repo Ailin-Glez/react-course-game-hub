@@ -7,7 +7,7 @@ function GameHeading() {
     const label = `${gameQuery.platform?.name || ''} ${gameQuery.genre?.name || ''} Games`
 
     return (
-        <Heading fontSize='2.6rem' my={6}>{label}</Heading>
+        <Heading fontSize='2.6rem' m='5px 0 1.2rem'>{label}</Heading>
     );
 }
 

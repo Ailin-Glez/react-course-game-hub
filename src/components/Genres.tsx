@@ -1,19 +1,16 @@
-import { List, Spinner, VStack } from '@chakra-ui/react'
-import { useGenres } from '@hooks';
+import { List, VStack } from '@chakra-ui/react'
 import { GameContext } from 'context/gameContext';
 import { useContext } from 'react';
 import GenreList from './generic/GenreList';
+import { GENRES } from 'data/genre';
 
 function Genres() {
-    const { data: genres, isLoading } = useGenres()
     const { gameQuery, setGameQuery } = useContext(GameContext)
 
-    if (isLoading) return <VStack justifyContent='center' alignItems='center' minH={5}> <Spinner minH={5}/> </VStack>
-    
     return (
         <VStack alignItems='flex-start'>
             <List>
-                {genres.map(g => {
+                {GENRES.map(g => {
                     return (
                         <GenreList 
                             genre={g} 

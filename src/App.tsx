@@ -29,7 +29,7 @@ function App() {
         <GameGrid />
       </GridItem>
       <Show above='lg'>
-        <GridItem area={'aside'} as='aside' p={2}>
+        <GridItem area={'aside'} as='aside' marginRight={2} p={2} maxHeight='87vh' overflowY='scroll'>
           <Genres />
         </GridItem>
       </Show>
